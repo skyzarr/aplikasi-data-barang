@@ -1,0 +1,150 @@
+object Form5: TForm5
+  Left = 905
+  Height = 475
+  Top = 293
+  Width = 631
+  Caption = 'transaksi'
+  ClientHeight = 475
+  ClientWidth = 631
+  DesignTimePPI = 120
+  OnCreate = FormCreate
+  LCLVersion = '3.0.0.3'
+  object Label1: TLabel
+    Left = 150
+    Height = 41
+    Top = 10
+    Width = 275
+    Caption = 'Transaksi Penjualan'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -30
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 30
+    Height = 31
+    Top = 90
+    Width = 301
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 31
+    ClientWidth = 301
+    Options = []
+    TabOrder = 0
+  end
+  object DBGrid2: TDBGrid
+    Left = 30
+    Height = 125
+    Top = 290
+    Width = 580
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource2
+    TabOrder = 1
+  end
+  object DBGrid1: TDBGrid
+    Left = 30
+    Height = 125
+    Top = 140
+    Width = 580
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    TabOrder = 2
+  end
+  object Button1: TButton
+    Left = 30
+    Height = 31
+    Top = 46
+    Width = 94
+    Caption = 'Laporan'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
+  object DataSource1: TDataSource
+    DataSet = ZQuery1
+    Left = 290
+    Top = 180
+  end
+  object DataSource2: TDataSource
+    DataSet = ZQuery2
+    Left = 290
+    Top = 320
+  end
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    Properties.Strings = (
+      'AutoEncodeStrings=ON'
+      'controls_cp=CP_UTF8'
+    )
+    Connected = True
+    HostName = 'localhost'
+    Port = 3306
+    Database = 'barang_aplikasi'
+    User = 'root'
+    Protocol = 'mysql-5'
+    LibraryLocation = 'C:\Program Files\MySQL\MySQL Server 8.2\lib\libmysql.dll'
+    Left = 160
+    Top = 180
+  end
+  object ZConnection2: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    Properties.Strings = (
+      'AutoEncodeStrings=ON'
+      'controls_cp=CP_UTF8'
+    )
+    Connected = True
+    HostName = 'localhost'
+    Port = 3306
+    Database = 'barang_aplikasi'
+    User = 'root'
+    Protocol = 'mysqld-5'
+    LibraryLocation = 'C:\Program Files\MySQL\MySQL Server 8.2\lib\libmysql.dll'
+    Left = 170
+    Top = 320
+  end
+  object ZQuery1: TZQuery
+    Connection = ZConnection1
+    Active = True
+    SQL.Strings = (
+      'SELECT*FROM transaksi'
+    )
+    Params = <>
+    Left = 390
+    Top = 180
+  end
+  object ZQuery2: TZQuery
+    Connection = ZConnection2
+    Active = True
+    SQL.Strings = (
+      'SELECT*FROM harga_barang'
+    )
+    Params = <>
+    Left = 390
+    Top = 330
+  end
+  object frReport1: TfrReport
+    InitialZoom = pzDefault
+    Options = []
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit, pbSettings, pbPageSetup]
+    DataType = dtDataSet
+    Left = 409
+    Top = 84
+  end
+  object frDBDataSet1: TfrDBDataSet
+    DataSet = ZQuery1
+    OnCheckEOF = frDBDataSet1CheckEOF
+    Left = 470
+    Top = 90
+  end
+end
